@@ -2,9 +2,7 @@ import { useState, useCallback } from "react";
 import { GeneratedVideo, VideoSettings, defaultSettings } from "@/types/video";
 import { toast } from "@/hooks/use-toast";
 
-const API_BASE_URL = import.meta.env.PROD 
-  ? '' // In production, use relative URLs
-  : 'http://localhost:8080'; // In development, use Vite dev server
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
 export const useVideoGeneration = () => {
   const [isGenerating, setIsGenerating] = useState(false);
