@@ -1,128 +1,143 @@
-# Otto - Quick Reference
+# 🚀 Otto AI - Quick Reference
 
-## 🚀 Quick Start
+## 📦 What You Have
 
+✅ **GitHub Repository**: https://github.com/iamathanase/Otto-AI  
+✅ **Code pushed and ready to deploy**  
+✅ **FREE Hugging Face API configured**  
+✅ **Clean project structure** (front, back, database)
+
+---
+
+## 🎯 Next Step: Deploy to Vercel
+
+**Read the full guide**: `DEPLOY_NOW.md`
+
+### Quick Deploy Steps:
+
+1. **Deploy Backend First**
+   - Go to vercel.com
+   - Import: `iamathanase/Otto-AI`
+   - Root Directory: `back`
+   - Add env: `HUGGINGFACE_API_TOKEN` = (your token)
+   - Copy the backend URL
+
+2. **Deploy Frontend Second**
+   - Import same repo again
+   - Root Directory: `front`
+   - Add env: `VITE_API_URL` = (backend URL from step 1)
+   - Done!
+
+---
+
+## 🔑 Your Credentials
+
+**Hugging Face Token**: Check `back/.env` file (not committed to GitHub)  
+**GitHub Repo**: https://github.com/iamathanase/Otto-AI
+
+---
+
+## 📁 Project Structure
+
+```
+Otto-AI/
+├── front/              # React frontend (Vite + TypeScript)
+│   ├── src/           # Components, pages, hooks
+│   ├── public/        # Logo and static files
+│   └── vercel.json    # Frontend deployment config
+│
+├── back/               # Serverless API (Vercel Functions)
+│   ├── api/           # API endpoints
+│   │   ├── generate-video.ts
+│   │   └── check-video.ts
+│   ├── .env           # Your Hugging Face token (local only)
+│   └── vercel.json    # Backend deployment config
+│
+└── database/           # Database schema (not implemented yet)
+    └── schema.sql
+```
+
+---
+
+## 🛠️ Local Development
+
+### Frontend:
 ```bash
-# 1. Install
+cd front
 npm install
-
-# 2. Configure
-cp .env.example .env
-# Add REPLICATE_API_TOKEN to .env
-
-# 3. Run
 npm run dev
 ```
+Opens at: http://localhost:5173
 
-## 🔑 Environment Variables
-
+### Backend:
 ```bash
-HUGGINGFACE_API_TOKEN=hf_your_free_token_here
+cd back
+npm install
+npm run dev
 ```
+Runs at: http://localhost:8080
 
-Get FREE token: https://huggingface.co/settings/tokens
-
-## 📦 Commands
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm test             # Run tests
-npm run lint         # Lint code
-```
+---
 
 ## 🌐 API Endpoints
 
-### Generate Video
-```bash
+**Generate Video/Image**:
+```
 POST /api/generate-video
-Content-Type: application/json
-
-{
-  "prompt": "A sunset over the ocean",
-  "style": "cinematic",
-  "cameraMotion": "pan",
-  "mood": "calm",
-  "aspectRatio": "16:9",
-  "duration": 5
-}
+Body: { prompt, style, cameraMotion, mood, aspectRatio, duration }
 ```
 
-### Check Status
+**Check Status**:
+```
+GET /api/check-video?id={videoId}
+```
+
+---
+
+## 💡 Important Notes
+
+- **FREE API**: Uses Hugging Face (100 requests/day)
+- **Current Output**: Generates images (video generation is complex for free tier)
+- **First Request**: Takes 20-30 seconds (model loading)
+- **Subsequent Requests**: Much faster
+
+---
+
+## 📚 Documentation Files
+
+- `DEPLOY_NOW.md` - Complete deployment guide
+- `PROJECT_STRUCTURE.md` - Detailed project structure
+- `FREE_API_GUIDE.md` - API information and alternatives
+- `front/README.md` - Frontend documentation
+- `back/README.md` - Backend documentation
+
+---
+
+## 🎨 Design Changes Made
+
+✅ Removed AI hype language  
+✅ Changed to warm, human color scheme (orange/beige)  
+✅ Switched to Inter font  
+✅ Conversational, friendly copy  
+✅ Clean, trustworthy design  
+
+---
+
+## ⚡ Quick Commands
+
 ```bash
-GET /api/check-video?predictionId=abc123
+# Push changes to GitHub
+git add -A
+git commit -m "Your message"
+git push
+
+# Check git status
+git status
+
+# View remote URL
+git remote -v
 ```
 
-## 📁 Key Files
+---
 
-| File | Purpose |
-|------|---------|
-| `api/generate-video.ts` | Video generation API |
-| `api/check-video.ts` | Status checking API |
-| `src/hooks/useVideoGeneration.ts` | Video generation logic |
-| `src/pages/Create.tsx` | Video creation page |
-| `vercel.json` | Vercel configuration |
-| `.env` | Environment variables |
-
-## 🎨 Customization
-
-### Colors
-Edit `src/index.css`:
-```css
---primary: 25 75% 47%;  /* Warm orange */
---background: 0 0% 100%; /* White */
-```
-
-### Models
-Edit `api/generate-video.ts`:
-```typescript
-version: 'your-model-version-here'
-```
-
-## 🐛 Common Issues
-
-### "Video generation service not configured"
-→ Add `HUGGINGFACE_API_TOKEN` to environment variables (FREE from huggingface.co)
-
-### "Model is loading"
-→ Wait 30 seconds on first use, then try again
-
-### Build fails
-→ Remove `lovable-tagger` from `vite.config.ts`
-
-### CORS errors
-→ Check `vercel.json` CORS headers
-
-### Slow generation
-→ Reduce duration or use faster model
-
-## 💰 Costs
-
-| Usage | Monthly Cost |
-|-------|--------------|
-| Personal use | **$0 (FREE!)** |
-| Small projects | **$0 (FREE!)** |
-| High volume | $9+ (Hugging Face Pro) |
-
-## 📚 Documentation
-
-- `README.md` - Overview
-- `GETTING_STARTED.md` - Setup guide
-- `DEPLOYMENT.md` - Deploy guide
-- `PRODUCTION_CHECKLIST.md` - Launch checklist
-- `PROJECT_SUMMARY.md` - Full summary
-
-## 🔗 Links
-
-- Hugging Face (FREE): https://huggingface.co
-- Get FREE Token: https://huggingface.co/settings/tokens
-- Vercel: https://vercel.com
-- Docs: See files above
-
-## 📞 Support
-
-1. Check documentation
-2. Review troubleshooting
-3. Check service status
-4. Open GitHub issue
+**Need help?** Check `DEPLOY_NOW.md` for detailed deployment instructions!
